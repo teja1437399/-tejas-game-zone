@@ -50,4 +50,12 @@ p {
 
 .game-links a:hover {
   background-color: #45a049;
+}body {
+  background: linear-gradient(to bottom, #1e1e1e, #333);
+  color: white;
+  }
+.game-card a:hover {
+  background-color: #ffd700;
+  color: black;
+  transform: scale(1.05);
 }
