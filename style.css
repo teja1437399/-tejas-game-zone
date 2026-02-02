@@ -51,3 +51,9 @@ h1 {
 .game-card:hover {
   transform: translateY(-10px);
 }
+.game-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
