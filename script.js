@@ -39,4 +39,21 @@ Computer chose <b>${computerChoice}</b><br><br>
 <b>${result}</b><br>
 Player: ${scorePlayer} | Computer: ${scoreComputer}
 `;
- 
+ document.addEventListener("keydown", e => {
+  if(e.code === "Space") {
+    bird.dy = jump;
+    document.getElementById("wing-sound").play();
+  }
+});
+if(pipes[i].x + pipes[i].width === bird.x){
+  score++;
+  document.getElementById("score").innerText = score;
+  document.getElementById("point-sound").play();
+}
+if(bird.x < pipes[i].x + pipes[i].width &&
+   bird.x + bird.width > pipes[i].x &&
+   bird.y < pipes[i].y + pipes[i].height &&
+   bird.y + bird.height > pipes[i].y){
+     document.getElementById("hit-sound").play();
+     setTimeout(() => { alert("Game Over! Score: " + score); document.location.reload(); }, 100);
+}  
