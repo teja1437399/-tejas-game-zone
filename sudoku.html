@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sudoku Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #1c1c1c;
+      color: white;
+    }
+
+    h1 {
+      margin-top: 20px;
+    }
+
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+
+    td {
+      border: 1px solid #555;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+    }
+
+    input {
+      width: 38px;
+      height: 38px;
+      font-size: 18px;
+      text-align: center;
+      border: none;
+      background: #333;
+      color: white;
+    }
+
+    .bold {
+      border-right: 3px solid white;
+    }
+
+    .bold-bottom {
+      border-bottom: 3px solid white;
+    }
+
+    a {
+      color: #00ffcc;
+      text-decoration: none;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🧩 Sudoku</h1>
+<p>Fill the grid (1-9)</p>
+
+<table>
+  <!-- Row 1 -->
+  <tr>
+    <td><input value="5" disabled></td>
+    <td><input value="3" disabled></td>
+    <td class="bold"><input></td>
+
+    <td><input></td>
+    <td><input value="7" disabled></td>
+    <td class="bold"><input></td>
+
+    <td><input></td>
+    <td><input></td>
+    <td><input></td>
+  </tr>
+
+  <!-- Row 2 -->
+  <tr>
+    <td><input value="6" disabled></td>
+    <td><input></td>
+    <td class="bold"><input></td>
+
+    <td><input value="1" disabled></td>
+    <td><input value="9" disabled></td>
+    <td class="bold"><input value="5" disabled></td>
+
+    <td><input></td>
+    <td><input></td>
+    <td><input></td>
+  </tr>
+
+  <!-- Row 3 -->
+  <tr class="bold-bottom">
+    <td><input></td>
+    <td><input value="9" disabled></td>
+    <td class="bold"><input value="8" disabled></td>
+
+    <td><input></td>
+    <td><input></td>
+    <td class="bold"><input></td>
+
+    <td><input></td>
+    <td><input value="6" disabled></td>
+    <td><input></td>
+  </tr>
+
+  <!-- More rows can be added later -->
+</table>
+
+<a href="index.html">⬅ Back to Home</a>
+
+</body>
+</html>
