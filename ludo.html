@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ludo Game</title>
+  <style>
+    body {
+      text-align: center;
+      background: #1a1a1a;
+      color: white;
+      font-family: Arial;
+    }
+
+    h1 {
+      margin-top: 20px;
+    }
+
+    canvas {
+      background: #333;
+      display: block;
+      margin: 20px auto;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    a {
+      display: block;
+      margin-top: 20px;
+      color: #00ffcc;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎲 Ludo Game</h1>
+<p>Click Roll Dice to move</p>
+
+<canvas id="game" width="300" height="300"></canvas>
+<button onclick="rollDice()">🎲 Roll Dice</button>
+
+<a href="index.html">⬅ Back to Home</a>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+let token = {x: 20, y: 20, size: 20};
+let steps = 0;
+
+function draw() {
+  ctx.clearRect(0,0,300,300);
+
+  // Draw simple path
+  ctx.strokeStyle = "white";
+  for(let i=0;i<=300;i+=40){
+    ctx.strokeRect(i,0,40,40);
+    ctx.strokeRect(0,i,40,40);
+  }
+
+  // Draw token
+  ctx.fillStyle = "red";
+  ctx.beginPath();
+  ctx.arc(token.x, token.y, token.size/2, 0, 2*Math.PI);
+  ctx.fill();
+}
+
+function rollDice() {
+  let dice = Math.floor(Math.random()*6)+1;
+  alert("You rolled: " + dice);
+  steps += dice;
+  token.x = 20 + (steps%7)*40;
+  token.y = 20 + Math.floor(steps/7)*40;
+}
+
+setInterval(draw, 50);
+</script>
+
+</body>
+</html>
