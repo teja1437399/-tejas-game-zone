@@ -22,5 +22,21 @@ dots.forEach(dot => {
     dot.eaten = true;
     score += 10; // +10 points per dot
     document.getElementById("score").innerText = score;
-  }
-});
+  }let scorePlayer = 0;
+let scoreComputer = 0;
+
+// After each round, update
+if(result.includes("You Win")){
+  scorePlayer += 1;
+} else if(result.includes("Computer Wins")){
+  scoreComputer += 1;
+}
+
+// Display
+document.getElementById("result").innerHTML = `
+You chose <b>${userChoice}</b><br>
+Computer chose <b>${computerChoice}</b><br><br>
+<b>${result}</b><br>
+Player: ${scorePlayer} | Computer: ${scoreComputer}
+`;
+ 
