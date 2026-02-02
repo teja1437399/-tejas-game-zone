@@ -13,3 +13,14 @@ cards.forEach(card => {
 window.addEventListener("load", () => {
   document.getElementById("page").classList.add("show");
 });
+// Add score variable
+let score = 0;
+
+// Inside draw() function, after eating a dot
+dots.forEach(dot => {
+  if(!dot.eaten && Math.abs(pacman.x-dot.x)<10 && Math.abs(pacman.y-dot.y)<10){
+    dot.eaten = true;
+    score += 10; // +10 points per dot
+    document.getElementById("score").innerText = score;
+  }
+});
