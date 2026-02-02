@@ -10,3 +10,6 @@ cards.forEach(card => {
     }, 300);
   });
 });
+window.addEventListener("load", () => {
+  document.getElementById("page").classList.add("show");
+});
