@@ -57,3 +57,73 @@ if(bird.x < pipes[i].x + pipes[i].width &&
      document.getElementById("hit-sound").play();
      setTimeout(() => { alert("Game Over! Score: " + score); document.location.reload(); }, 100);
 }  
+let gameStarted = false;
+let gameOver = false;
+document.addEventListener("keydown", e => {
+  if(e.code === "Space" && !gameStarted){
+    gameStarted = true;
+    document.getElementById("message").style.display = "none";
+    bird.dy = jump;
+    document.getElementById("wing-sound").play();
+  } else if(e.code === "Space" && gameStarted && !gameOver){
+    bird.dy = jump;
+    document.getElementById("wing-sound").play();
+  }
+}); function draw() {
+  ctx.clearRect(0,0,400,400);
+
+  if(!gameStarted){
+    // gentle float before game starts
+    bird.y += Math.sin(frame * 0.05) * 2;
+  } else if(!gameOver){
+    bird.dy += gravity;
+    bird.y += bird.dy;
+  }
+
+  // Draw bird
+  ctx.fillStyle = "yellow";
+  ctx.fillRect(bird.x, bird.y, bird.width, bird.height);
+
+  // Pipes and rest of game only if started
+  if(gameStarted){
+    for(let i=0;i<pipes.length;i++){
+      pipes[i].x -= 2;
+      ctx.fillStyle = "green";
+      ctx.fillRect(pipes[i].x, pipes[i].y, pipes[i].width, pipes[i].height);
+
+      // Collision
+      if(bird.x < pipes[i].x + pipes[i].width &&
+         bird.x + bird.width > pipes[i].x &&
+         bird.y < pipes[i].y + pipes[i].height &&
+         bird.y + bird.height > pipes[i].y){
+           gameOver = true;
+           document.getElementById("hit-sound").play();
+           document.getElementById("message").innerText = "💥 Game Over! Score: " + score;
+           document.getElementById("message").style.display = "block";
+           setTimeout(() => { document.location.reload(); }, 1500);
+      }
+
+      // Score
+      if(pipes[i].x + pipes[i].width === bird.x){
+        score++;
+        document.getElementById("score").innerText = score;
+        document.getElementById("point-sound").play();
+      }
+    }
+
+    // Ground / ceiling collision
+    if(bird.y + bird.height > 400 || bird.y < 0){
+      gameOver = true;
+      document.getElementById("hit-sound").play();
+      document.getElementById("message").innerText = "💥 Game Over! Score: " + score;
+      document.getElementById("message").style.display = "block";
+      setTimeout(() => { document.location.reload(); }, 1500);
+    }
+
+    // Add pipes every 120 frames
+    if(frame % 120 === 0) createPipe();
+  }
+
+  frame++;
+  requestAnimationFrame(draw);
+}
