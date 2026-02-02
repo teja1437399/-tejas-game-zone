@@ -43,4 +43,11 @@ h1 {
 
 .game-card a:hover {
   background: #00ffcc;
+}.game-card {
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.game-card:hover {
+  transform: translateY(-10px);
 }
